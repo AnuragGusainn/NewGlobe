@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/your-repo/lessoncompletion-api.git'
+                git branch: 'main', url: 'https://github.com/AnuragGusainn/NewGlobe.git/lessoncompletion-api.git'
             }
         }
 
