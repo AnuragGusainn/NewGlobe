@@ -51,3 +51,6 @@ duso su
 docker ps
 sodu du
 sudo su
+clear
+docker ps
+sudo su 
