@@ -7,5 +7,5 @@ def lesson_complete():
     return jsonify({"status": "Lesson Completed 70%"}), 200
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8081)
+    app.run(host='0.0.0.0', port=8000)
 
