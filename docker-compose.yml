@@ -2,4 +2,4 @@ services :
   web :
      image : anuraggg/flask-app:latest
      ports :
-         - "8081:8000"
+         - "8000:8000"
