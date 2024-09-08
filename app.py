@@ -15,8 +15,9 @@ def lesson_complete():
                     margin-top: 50px;
                 }
                 .status {
-                    font-size: 2em;
-                    color: #4CAF50;
+                    font-size: 2.5em;
+                    color: #FFD700; /* Gold color for a glowing effect */
+                    text-shadow: 0 0 10px rgba(255, 215, 0, 0.8), 0 0 20px rgba(255, 215, 0, 0.6), 0 0 30px rgba(255, 215, 0, 0.4);
                     animation: fadeIn 3s ease-in-out, pulse 1.5s infinite;
                 }
                 @keyframes fadeIn {
@@ -25,7 +26,7 @@ def lesson_complete():
                 }
                 @keyframes pulse {
                     0% { transform: scale(1); }
-                    50% { transform: scale(1.05); }
+                    50% { transform: scale(1.1); }
                     100% { transform: scale(1); }
                 }
             </style>
