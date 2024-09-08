@@ -1,46 +1,33 @@
 pipeline {
-    agent any 
-    
+    agent any
+
     stages {
-        stage("Clone Code") {
+        stage("Code") {
             steps {
                 echo "Cloning the code"
-                git url: "https://github.com/AnuragGusainn/NewGlobe.git", branch: "master"
+                git url: "https://github.com/AnuragGusainn/django-notes-app.git", branch: "main"
             }
         }
         stage("Build") {
             steps {
-                echo "Building the image"
-                sh "docker build -t flask-app ."
+                echo "Building the code"
+                sh "docker build -t my-note-app ."
             }
         }
         stage("Push to Docker Hub") {
             steps {
                 echo "Pushing the image to Docker Hub"
-                withCredentials([usernamePassword(credentialsId: "DockerUname", passwordVariable: "dockerHubPass", usernameVariable: "dockerHubUser")]) {
-                    sh "docker tag flask-app ${env.dockerHubUser}/flask-app:latest"
+                withCredentials([usernamePassword(credentialsId: "dockerHub", passwordVariable: "dockerHubPass", usernameVariable: "dockerHubUser")]) {
+                    sh "docker tag my-note-app ${env.dockerHubUser}/my-note-app:latest"
                     sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPass}"
-                    sh "docker push ${env.dockerHubUser}/flask-app:latest"
+                    sh "docker push ${env.dockerHubUser}/my-note-app:latest"
                 }
             }
         }
-        stage("Deploy to Kubernetes") {
-            steps {
-                echo "Deploying to Kubernetes"
-                
-                // Set Kubernetes context if needed
-                // sh "kubectl config use-context YOUR_CONTEXT"
+       
 
-                // Apply deployment and service YAML files
-                sh "kubectl apply -f deployment.yaml"
-                sh "kubectl apply -f service.yaml"
-
-                // Optionally, check the status of the deployment
-                sh "kubectl rollout status deployment/flask-app" // Replace with your deployment name
-            }
-        }
 		
-		stage('Trigger ManifestUpdate') {
+	stage('Trigger ManifestUpdate') {
                 echo "triggering updatemanifestjob"
                 build job: 'updatemanifest', parameters: [string(name: 'DOCKERTAG', value: env.BUILD_NUMBER)]
 				}
