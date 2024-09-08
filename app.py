@@ -9,7 +9,7 @@ def lesson_complete():
     html_content = '''
     <html>
         <body>
-            <h1>Lesson Completed: 99%</h1>
+            <h1>Lesson Completed: 70%</h1>
             <img src="{{ url_for('NewGlobe', filename='demo_image.jpeg') }}" alt="Demo Image" width="300">
         </body>
     </html>
