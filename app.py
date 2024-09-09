@@ -32,7 +32,7 @@ def lesson_complete():
             </style>
         </head>
         <body>
-            <div class="status">Lesson Completed: 75%</div>
+            <div class="status">Lesson Completed: 90%</div>
         </body>
     </html>
     '''
