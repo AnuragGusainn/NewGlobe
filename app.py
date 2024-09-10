@@ -1,17 +1,7 @@
-from flask import Flask, request, render_template_string, jsonify
+from flask import Flask, render_template_string
 
 app = Flask(__name__)
 
-# Webhook endpoint for GitHub
-@app.route('/github-webhook/', methods=['POST'])
-def github_webhook():
-    if request.method == 'POST':
-        data = request.json
-        # Process the GitHub webhook payload
-        print("Received webhook event:", data)
-        return jsonify({'status': 'Webhook received successfully!'}), 200
-
-# Your existing route for lesson completion status
 @app.route('/lesson-complete', methods=['GET'])
 def lesson_complete():
     # Create HTML content with CSS animation
