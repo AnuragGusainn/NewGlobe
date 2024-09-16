@@ -16,7 +16,7 @@ def lesson_complete():
                 }
                 .status {
                     font-size: 2.5em;
-                    color: #FFD700; /* Gold color for a glowing effect */
+                    color: #00FF00; /* Green color for a glowing effect */
                     text-shadow: 0 0 10px rgba(255, 215, 0, 0.8), 0 0 20px rgba(255, 215, 0, 0.6), 0 0 30px rgba(255, 215, 0, 0.4);
                     animation: fadeIn 3s ease-in-out, pulse 1.5s infinite;
                 }
