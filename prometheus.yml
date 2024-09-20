@@ -1,0 +1,7 @@
+global:
+  scrape_interval: 15s  # Set the interval to scrape targets
+
+scrape_configs:
+  - job_name: 'flask-app'
+    static_configs:
+      - targets: ['flask-app:8000']  # Assuming flask-app is accessible on this address from Prometheus

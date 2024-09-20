@@ -38,5 +38,12 @@ pipeline {
                 build job: 'updatemanifest', parameters: [string(name: 'DOCKERTAG', value: env.BUILD_NUMBER)]
             }
         }
+        
+        stage('Deploy Monitoring Stack') {
+            steps {
+                echo "Deploying Prometheus and Grafana using Docker Compose"
+                sh 'docker-compose -f prometheus-grafana-compose.yml up -d'
+            }
+        }
     }
 }
