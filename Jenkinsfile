@@ -42,7 +42,7 @@ pipeline {
         stage('Deploy Monitoring Stack') {
             steps {
                 echo "Deploying Prometheus and Grafana using Docker Compose"
-                sh 'docker-compose -f prometheus-grafana-compose.yml up -d'
+                sh 'docker-compose -f prometheus-grafana-compose.yml up -d --remove-orphans'
             }
         }
     }
