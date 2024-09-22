@@ -1,4 +1,4 @@
-from flask import Flask, render_template_string
+from flask import Flask, render_template_string, request
 from prometheus_client import Counter, generate_latest, CONTENT_TYPE_LATEST
 from prometheus_client import start_http_server
 
@@ -58,7 +58,7 @@ def metrics():
 if __name__ == '__main__':
     # Start Prometheus metrics server on port 8001
     start_http_server(8001)
-    
-    # Run Flask app
-    app.run(host='0.0.0.0', port=8000)
+
+    # Run Flask app with debug mode enabled
+    app.run(host='0.0.0.0', port=8000, debug=True)
 
