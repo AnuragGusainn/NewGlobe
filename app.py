@@ -44,7 +44,7 @@ def lesson_complete():
             </style>
         </head>
         <body>
-            <div class="status">Lesson Completed: 98%</div>
+            <div class="status">Lesson Completed: 92%</div>
         </body>
     </html>
     '''
