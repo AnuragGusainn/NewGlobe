@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template_string
+from flask import Flask, request, render_template_string
 from prometheus_client import Counter, generate_latest, CONTENT_TYPE_LATEST, start_http_server
 
 # Flask application
@@ -28,7 +28,7 @@ def lesson_complete():
                 }
                 .status {
                     font-size: 2.5em;
-                    color: #00FF00; /* Green color for a glowing effect */
+                    color: #00FF00;
                     text-shadow: 0 0 10px rgba(0, 255, 0, 0.8), 0 0 20px rgba(0, 255, 0, 0.6), 0 0 30px rgba(0, 255, 0, 0.4);
                     animation: fadeIn 3s ease-in-out, pulse 1.5s infinite;
                 }
@@ -56,11 +56,12 @@ def metrics():
     return generate_latest(), 200, {'Content-Type': CONTENT_TYPE_LATEST}
 
 if __name__ == '__main__':
-    # Get dynamic Prometheus port from environment, default to 8001
-    prometheus_port = int(os.getenv("PROMETHEUS_PORT", 8001))
+    # Get Prometheus port from environment variable, default to 8001
+    prometheus_port = int(os.getenv('PROMETHEUS_PORT', 8001))
 
     # Start Prometheus metrics server on dynamic port
     start_http_server(prometheus_port)
 
     # Run Flask app
     app.run(host='0.0.0.0', port=8000)
+
