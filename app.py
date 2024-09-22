@@ -1,6 +1,6 @@
-from flask import Flask, render_template_string, request
-from prometheus_client import Counter, generate_latest, CONTENT_TYPE_LATEST
-from prometheus_client import start_http_server
+import os
+from flask import Flask, render_template_string
+from prometheus_client import Counter, generate_latest, CONTENT_TYPE_LATEST, start_http_server
 
 # Flask application
 app = Flask(__name__)
@@ -56,9 +56,11 @@ def metrics():
     return generate_latest(), 200, {'Content-Type': CONTENT_TYPE_LATEST}
 
 if __name__ == '__main__':
-    # Start Prometheus metrics server on port 8001
-    start_http_server(8001)
+    # Get dynamic Prometheus port from environment, default to 8001
+    prometheus_port = int(os.getenv("PROMETHEUS_PORT", 8001))
 
-    # Run Flask app with debug mode enabled
-    app.run(host='0.0.0.0', port=8000, debug=True)
+    # Start Prometheus metrics server on dynamic port
+    start_http_server(prometheus_port)
 
+    # Run Flask app
+    app.run(host='0.0.0.0', port=8000)
