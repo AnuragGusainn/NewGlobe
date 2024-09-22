@@ -57,7 +57,10 @@ def metrics():
 
 if __name__ == '__main__':
     # Get Prometheus port from environment variable, default to 8001
-    prometheus_port = int(os.getenv('PROMETHEUS_PORT', 8001))
+    try:
+        prometheus_port = int(os.getenv('PROMETHEUS_PORT', 8001))
+    except ValueError:
+        prometheus_port = 8001  # Fallback to default if conversion fails
 
     # Start Prometheus metrics server on dynamic port
     start_http_server(prometheus_port)
