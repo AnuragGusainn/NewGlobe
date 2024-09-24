@@ -4,4 +4,5 @@ global:
 scrape_configs:
   - job_name: 'flask-app'
     static_configs:
-      - targets: ['flask-app:8000']  # Assuming flask-app is accessible on this address from Prometheus
+      - targets: ['flask-app-service:8000']  # Update the service name to flask-app-service
+
