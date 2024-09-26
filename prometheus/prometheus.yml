@@ -1,8 +1,9 @@
 global:
   scrape_interval: 15s  # Set the interval to scrape targets
+  scrape_timeout: 10s   # Increase the timeout for scraping
 
 scrape_configs:
   - job_name: 'flask-app'
+    metrics_path: '/metrics'  # Specify the metrics path explicitly if different
     static_configs:
-      - targets: ['flask-app-service:8000']  # Update the service name to flask-app-service
-
+      - targets: ['flask-app-service:8000']  # Ensure this service name matches your Kubernetes service
